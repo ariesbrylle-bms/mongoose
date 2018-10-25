@@ -68,12 +68,13 @@ exports.updateUser = function(req,res){
       province: req.body.address.province,
       zipCode: req.body.address.zipCode
     },
-    updatedBy : req.body.updatedBy
+    updatedBy : req.body.updatedBy,
+    dateUpdated : new Date()
   }
 
   User.findOneAndUpdate(req.params.id, {$set: UserData}, function (err, user) {
       if (err) return console.log(err);
-      res.send('User udpated.');
+      res.send('User updated.');
   });
 };
 
@@ -88,6 +89,26 @@ exports.deleteUser = function(req,res){
   User.findOneAndUpdate(req.params.id, {$set: UserData}, function (err, user) {
       if (err) return console.log(err);
       res.send('User Deleted.');
+  });
+};
+
+exports.getAll = function(req,res){
+  User.find({status : "Active"}, function(err,user){
+    if(err){
+      return console.log(err);
+    }
+
+    res.json(user);
+  });
+};
+
+exports.getIndividual = function(req,res){
+  User.find({_id : req.params.id}, function(err,user){
+    if(err){
+      return console.log(err);
+    }
+
+    res.json(user);
   });
 };
 

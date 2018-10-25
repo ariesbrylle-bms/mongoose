@@ -11,7 +11,7 @@ let OrderSchema = new Schema({
     type: Date,
     default: Date.now
   },
-  orderDetails : {
+  orderDetails : [{
     productId : {
       type: mongoose.Schema.Types.ObjectId, 
       ref: 'Product', 
@@ -24,7 +24,7 @@ let OrderSchema = new Schema({
     totalAmount : {
       type: SchemaTypes.Double, required: true
     }
-  },
+  }],
   orderedBy: {
     type: mongoose.Schema.Types.ObjectId, 
     ref: 'User', 
@@ -34,8 +34,9 @@ let OrderSchema = new Schema({
     or: {type: String, required: false, max: 25},
     amount: {type: SchemaTypes.Double, required: true},
     paymentDate: {type: Date, required: false, default : Date.now},
-    paymentType: {type: String, required: false, max: 25},
+    paymentType: {type: String, required: false, max: 25}
   },
+  status : {type : String, required : true, default : 'Active'},
   deliveryStatus : {
     status : {
       type: String, 
