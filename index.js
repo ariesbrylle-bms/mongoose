@@ -4,7 +4,8 @@ const app = express();
 
 const PORT = 3400;
 
-const product = require('./server/routes/product.routes'); // Imports routes for the products
+const product = require('./server/routes/product.routes'); // Imports routes for the users
+const user = require('./server/routes/user.routes'); // Imports routes for the products
 
 // Set up mongoose connection
 const mongoose = require('mongoose');
@@ -17,6 +18,9 @@ db.on('error', console.error.bind(console, 'MongoDB connection error:'));
 
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({extended: false}));
+
+app.use('/', user);
+app.use('/user', user);
 app.use('/products', product);
 
 app.listen(PORT, () => {

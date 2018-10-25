@@ -14,7 +14,7 @@ let UserSchema = new Schema({
       fname: {type: String, required: true, max: 50},
       mname: {type: String, required: false, max: 50},
       lname: {type: String, required: true, max: 50},
-      nameExt: {type: String, required: false, max: 10},
+      nameExt: {type: String, required: false, max: 10}
     },
     photo_path: {type: String, required: false, max: 100},
     emailAddress: {type: String, required: true, max: 100},
@@ -45,7 +45,7 @@ let UserSchema = new Schema({
     dateUpdated: {
       required: false,
       type: Date,
-      default: Date.now},
+      default: Date.now}
 });
 
 // Export the model
