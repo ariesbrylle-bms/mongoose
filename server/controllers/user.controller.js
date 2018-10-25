@@ -111,7 +111,3 @@ exports.getIndividual = function(req,res){
     res.json(user);
   });
 };
-
-exports.test = function (req, res) {
-    res.send('Greetings from the User controller!');
-};
