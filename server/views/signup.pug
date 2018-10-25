@@ -1,0 +1,66 @@
+div#signUpForm(class="panel panel-warning")
+  div(class="panel-heading")
+      center
+          h2 
+              b Sign Up Form
+      div#Form(class="panel-body")
+      center#textTransform
+          form
+              div(class="form-row")
+                  div(class="form-group col-md-6")
+                      label(for="inputEmail4") Username
+                      input(type="input" class="form-control" id="txtUsername" placeholder="juandelacruz")
+
+                  div(class="form-group col-md-6")
+                      label(for="inputPassword4") Password
+                      input(type="password" class="form-control" id="txtPassword" placeholder="Password")
+
+              div(class="form-row")
+                  div(class="form-group col md-6")
+                      label(for="inputEmail4") First Name
+                      input(type="email" class="form-control" id="txtFirstName" placeholder="First Name")
+
+                  div(class="form-group col-md-6")
+                      label(for="inputPassword4") Middle Name
+                      input(type="password" class="form-control" id="txtMiddleName" placeholder="Middle Name")
+
+              div(class="form-row")
+                  div(class="form-group col-lg-8")
+                      label(for="inputPassword4") Last Name
+                      input(type="password" class="form-control" id="txtLastName" placeholder="Last Name")
+
+                  div(class="form-group col sm-3")
+                      label(for="inputPassword4") Name Extension
+                      input(type="password" class="form-control" id="txtNameExt" placeholder="Ex: Jr.")
+
+              div(class="form-row")
+                  div(class="form-group col md-6")
+                      label(for="inputAddress") E-mail
+                      input(type="text" class="form-control" id="txtEmail" placeholder="juandelacruz@yahoo.com")
+                  
+                  div(class="form-group col md-2")
+                      label(for="inputAddress") Phone Number
+                      input(type="text" class="form-control" id="phoneNumber" placeholder="Ex: 555-5555")
+
+              div(class="form-group")
+                  label(for="inputAddress") Address 1
+                  input(type="text" class="form-control" id="txtFirstAddress" placeholder="1234 Main St")
+
+              div(class="form-group")
+                  label(for="inputAddress2") Address 2
+                  input(type="text" class="form-control" id="txtSecAddress" placeholder="Apartment, studio, or floor")
+
+              div(class="form-row")
+                  div(class="form-group col-md-6")
+                      label(for="inputCity") City
+                      input(type="text" class="form-control" id="txtCity" placeholder="City")
+
+                  div(class="form-group col-md-4")
+                      label(for="inputCity") Province
+                      input(type="text" class="form-control" id="txtProvince" placeholder="Province")
+
+                  div(class="form-group col-md-2")
+                      label(for="inputZip") Postal Code
+                      input(type="text" class="form-control" id="txtPostalCode" placeholder="Postal Code")
+
+                  button#btnSignIn(type="submit" class="btn btn-primary col-lg-12") Sign In
