@@ -10,13 +10,15 @@ exports.product_create = function (req, res) {
         description: 'This is a samsung product',
         photo_path: '/photo.jpeg',
         quantity: 100,
-        price: 35100.50
+        price: 35100.50,
+        addedBy : 1,
+        updatedBy : 1
       }
   );
 
   product.save(function (err) {
       if (err) {
-          return next(err);
+          return console.log(err);
       }
       res.send('Product Created successfully')
   })
