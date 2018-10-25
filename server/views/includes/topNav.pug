@@ -1,20 +1,23 @@
-h3#h3Title 
-  b#grpName Atomic Potato Shop
-  .form-group#buts
-      button#btnSignUp.btn.btn-lg(type="button"
-      v-on:click="signUp"
-      style='background-color:transparent;')
-          i(class="fa fa-user-plus")
-          span Sign Up
+header
+  nav(class="navbar navbar-expand-md navbar-dark fixed-top bg-dark")
+    a(class="navbar-brand" href="#") Atomic Potato Shop
+    button(class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarCollapse" 
+      aria-controls="navbarCollapse" aria-expanded="false" aria-label="Toggle navigation")
+      span(class="navbar-toggler-icon")
+    div(class="collapse navbar-collapse" id="navbarCollapse")
+      ul(class="navbar-nav mr-auto")
+      form(class="form-inline mt-2 mt-md-0" id="signUpController")
+        //- input(class="form-control mr-sm-10" type="text" placeholder="Search" aria-label="Search")
+        a(href="/signup" class="btn btn-success my-2 my-sm-0")
+            i(class="fa fa-user-plus") 
+            span &nbspSign Up
+        span &nbsp
+        a(href="/login" class="btn btn-primary my-2 my-sm-0")
+            i(class="fa fa-user-circle-o")
+            span &nbspLogin
+        span &nbsp
+        button(type="button" @click="showCart" class="btn btn-danger my-2 my-sm-0")
+            i(class="fa fa-cart-arrow-down")
+            span &nbspCart
 
-      button.btn.btn-lg(type="button"
-      v-on:click="logIn" 
-      style='background-color:transparent;')
-          i(class="fa fa-user-circle-o") 
-          span  Login
-
-      button.btn.btn-lg(type="button"
-      v-on:click="openCart" 
-      style='background-color:transparent;') 
-          i(class="fa fa-cart-arrow-down") 
-          span  Cart
+            

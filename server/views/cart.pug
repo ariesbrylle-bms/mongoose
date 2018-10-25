@@ -1,0 +1,53 @@
+div(class="modal fade" id="cartId" tabindex="-1" role="dialog" aria-hidden="true")
+    div(class="modal-dialog modal-lg" role="document")
+        div(class="modal-content")
+            div(class="modal-header")
+                h5(class="modal-title" id="exampleModalLabel") Cart
+                button(type="button" class="close" data-dismiss="modal" aria-label="Close")
+                span(aria-hidden="true") &times;
+
+            div(class="modal-body")
+                table(class="table")
+                  thead
+                    tr
+                      td
+                      td(style="width:298px") Item
+                      td(style="width:50px") Quantity
+                      td
+                      td Price
+                      td Total Price
+                  tbody
+                    tr
+                      td 
+                        img(
+                          style="width: 25px;"
+                          src="/images/item.jpg")
+                      td S7 Edge
+                      td 
+                        input(class="form-control" type="number" name="title" v-model="title" value="1")
+                      td x
+                      td Php 500.00
+                      td Php 25,000.00
+                    tr
+                      td 
+                        img(
+                          style="width: 25px;"
+                          src="/images/item.jpg")
+                      td S7 Edge Mahabang Description with color gray and blue and black
+                      td 
+                        input(class="form-control" type="number" name="title" v-model="title" value="1")
+                      td x
+                      td Php 500.00
+                      td Php 25,000.00
+                    tr
+                      td 
+                      td 
+                      td 
+                      td 
+                      td 
+                        b Total Amount
+                      td Php 50,000.00
+
+            div(class="modal-footer")
+                button(type="button" class="btn btn-secondary" data-dismiss="modal") Continue Shopping
+                button(type="button" class="btn btn-primary") Checkout

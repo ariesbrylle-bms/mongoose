@@ -1,0 +1,38 @@
+doctype html
+html(lang="en")
+
+head
+  include includes/header.pug
+body
+  include includes/topNav.pug   
+  main(class="container")
+    div(class="row")
+      div(class="col-md-12 card" style="border: 1px solid rgba(0, 0, 0, 0);")
+        div.card-body
+          <div class="jumbotron text-center">
+            <h1>Login your account</h1>
+            p Continue shopping here at Atomic Potato Shop...
+          </div>
+          div(class="row")
+            div(class="col-md-3")
+            div(class="col-md-6")
+              form(class="center")
+                div(class="form-row")
+                    div(class="form-group col-md-12")
+                        label(for="inputEmail4") Username
+                        input(type="text" class="form-control" id="txtFirstName" placeholder="Username")
+
+                div(class="form-row")
+                    div(class="form-group col-md-12")
+                        label(for="inputAddress") Password
+                        input(type="password" class="form-control" id="txtEmail" placeholder="Password")
+
+                div(class="form-row")
+                  div(class="form-group col-md-12")
+                    button#btnSignIn(type="submit" class="btn btn-primary col-md-12") Login
+            div(class="col-md-3")
+
+
+script(src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js")
+script(src="/js/index.js")
+

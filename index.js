@@ -34,8 +34,18 @@ app.use((req, res, next) => {
   next();
 });
 
+app.get('/signup', (req,res)=> {
+  res.render('signup', {});
+});
+
+app.get('/login', (req,res)=> {
+  res.render('login', {});
+});
+
+
 // routes
 app.use('/', index);
+
 app.use('/user', user);
 app.use('/products', product);
 app.use('/order', order);

@@ -1,29 +1,4 @@
-#buts{
-    float:right;
-    margin-top: -10px;
-}
-
-#addCart{
-    font-size: 15px;
-    margin-top: -9px;
-    margin-right: -7px;
-}
-
-#grpName{
-    animation: colorchanges 3s infinite;
-}
-
-@keyframes colorchanges{
-	0%{color:#3385ff;}
-	25%{color: black;}
-	50%{color: #3385ff;}
-	100%{color: black;}
-}
-
-#Form{
-    display: inline-block;
-}
-
-#textTransform{
-    text-align: left;
+.card-header {
+    padding-top: 30px !important;
+    padding-left: 34px !important;
 }
