@@ -24,11 +24,25 @@ var PORT = 3400;
       quantity : null,
       price : null,
       photo_path : null,
-      productId : null
+      productId : 'none',
+      products :[],
+      ctr : 0
     },
     created: function(){
+      this.fOnload()
     },
     methods: {
+      fOnload: function(){
+          axios.get(`http://localhost:${PORT}/products/get`)
+              .then((response) => {
+                  this.ctr = 0;
+                  this.products = response.data;
+                  console.log(response.data)
+              }).catch((err) => {
+                  this.products = [];
+                  this.notification('error', 'Error while requesting for data.');
+              });
+      },
       resetForm : function(){
         this.sku = '';
         this.name = ''; 
@@ -36,7 +50,7 @@ var PORT = 3400;
         this.quantity = ''; 
         this.price = ''; 
         this.photo_path = ''; 
-        this.productId = ''; 
+        this.productId = 'none'; 
         $('#img-upload').attr('src','');
         $('input').val('')
       },
@@ -44,14 +58,47 @@ var PORT = 3400;
           $.notify(message, type);
       },
       onSubmit: function(){
-        if (typeof $("#imgInp")[0].files[0] == "undefined"){
+        if (typeof $("#imgInp")[0].files[0] == "undefined" && String(this.productId) == "none"){
           return this.notification('error', 'Please select image only.');
+        }else if (typeof $("#imgInp")[0].files[0] == "undefined" && String(this.productId) != "none"){
+          // update without image
+          var payload = {
+            sku : productController.sku,
+            name : productController.name,
+            description : productController.description,
+            quantity : productController.quantity,
+            price : productController.price,
+            photo_path : productController.photo_path,
+            productId : productController.productId
+          };
+
+          if (String(this.productId) == "" && String(this.productId) == String(null)){
+            
+          }else{
+            axios.put(`http://localhost:${PORT}/products/update/` + productController.productId, payload)
+              .then((res) => {
+                if (res.data.status == "Success"){
+                  productController.resetForm();
+                  productController.fOnload();
+                  return productController.notification('success', res.data.message);
+                }else{
+                  return productController.notification('error', res.data.message);
+                }
+              }).catch((err) => {
+                  return productController.notification('error', 'Error while saving.');
+                  console.log(err);
+              });
+          }
+
+          return false;
+          
         }
+
         var blobFile = $("#imgInp")[0].files[0];
         var formData = new FormData();
         formData.append("file", blobFile);
 
-      
+        
         $.ajax({
            url:  `http://localhost:${PORT}/upload_image`,
            type: "POST",
@@ -71,21 +118,34 @@ var PORT = 3400;
                   productId : productController.productId
                 };
 
-                if (String(this.productId) == "" || String(this.productId) == String(null) || String(this.productId) == String(undefined)){
+                if (String(productController.productId) == "none"){
                   axios.post(`http://localhost:${PORT}/products/add`, payload)
                     .then((res) => {
                       if (res.data.status == "Success"){
                         productController.resetForm();
+                        productController.fOnload();
                         return productController.notification('success', res.data.message);
                       }else{
-                        productController.notification('error', res.data.message);
+                        return productController.notification('error', res.data.message);
                       }
                     }).catch((err) => {
                         productController.notification('error', 'Error while saving.');
                         console.log(err);
                     });
                 }else{
-                  
+                  axios.put(`http://localhost:${PORT}/products/update/` + productController.productId, payload)
+                    .then((res) => {
+                      if (res.data.status == "Success"){
+                        productController.resetForm();
+                        productController.fOnload();
+                        return productController.notification('success', res.data.message);
+                      }else{
+                        return productController.notification('error', res.data.message);
+                      }
+                    }).catch((err) => {
+                        return productController.notification('error', 'Error while saving.');
+                        console.log(err);
+                    });
                 }
                }else{
                 return this.notification('error', 'Please select .png image only.');
@@ -97,6 +157,26 @@ var PORT = 3400;
         });
     
       },
+      getDetails: function(id){
+          axios.get(`http://localhost:${PORT}/products/get/` + id)
+              .then((response) => {
+                  console.log(response)
+                  this.sku = response.data.sku;
+                  this.name = response.data.name; 
+                  this.description = response.data.description; 
+                  this.quantity = response.data.quantity; 
+                  this.price = response.data.price; 
+                  this.photo_path = response.data.photo_path; 
+                  this.productId = response.data._id; 
+
+                  $('#img-upload').attr('src', response.data.photo_path);
+                  $("html, body").animate({ scrollTop: 0 }, "slow");
+                  return false;
+              }).catch((err) => {
+                  this.notification('error', 'Error while requesting for data.');
+              });
+
+      }
     }
   });
   $("#demo").carousel({interval: 3000});

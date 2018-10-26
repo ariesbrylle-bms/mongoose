@@ -55,9 +55,18 @@ exports.updateProduct = function(req,res){
         dateUpdated : new Date()
   }
 
-  Product.findOneAndUpdate(req.params.id, {$set: ProductData}, function (err, product) {
-      if (err) return console.log(err);
-      res.send('Product updated.');
+  Product.findOneAndUpdate({_id : req.params.id}, {$set: ProductData}, function (err, product) {
+      if (err){
+        return res.json({
+          message : "There is something wrong with your form, please check and try again",
+          status : "Error"
+        });
+      }
+      return res.json({
+        message : "Product has been successfully updated.",
+        status : "Success",
+        data : product
+      });
   });
 };
 
@@ -72,7 +81,7 @@ exports.deleteProduct = function(req,res){
 
   Product.findOneAndUpdate(req.params.id, {$set: ProductData}, function (err, product) {
       if (err) return console.log(err);
-      res.send('Product deleted.');
+      res.send(product);
   });
 };
 

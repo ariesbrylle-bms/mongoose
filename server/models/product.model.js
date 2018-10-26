@@ -19,8 +19,7 @@ let ProductSchema = new Schema({
     },
     dateAdded: {
       required: false,
-      type: Date,
-      default: Date.now
+      type: Date
     },
     updatedBy: {
       type: mongoose.Schema.Types.ObjectId, 
@@ -29,8 +28,7 @@ let ProductSchema = new Schema({
     },
     dateUpdated: {
       required: false,
-      type: Date,
-      default: Date.now}
+      type: Date}
 });
 
 

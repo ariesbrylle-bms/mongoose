@@ -34,8 +34,7 @@ let UserSchema = new Schema({
     },
     dateAdded: {
       required: false,
-      type: Date,
-      default: Date.now
+      type: Date
     },
     updatedBy: {
       type: mongoose.Schema.Types.ObjectId, 
@@ -44,8 +43,7 @@ let UserSchema = new Schema({
     },
     dateUpdated: {
       required: false,
-      type: Date,
-      default: Date.now}
+      type: Date}
 });
 
 // Export the model
