@@ -13,6 +13,7 @@ body
         div.card-body
           form(class="center" method="post" id="myForm" v-on:submit.prevent="onSubmit")
             input(type="hidden" class="form-control" v-model="productId" id="productId")
+            input(type="hidden" class="form-control" v-model="photo_path" id="photo_path")
             div(class="form-row")
               div(class="form-group col-md-6")
                 label Upload Image
@@ -23,36 +24,36 @@ body
                 div(class="input-group")
                     span(class="input-group-btn")
                         button(class="btn btn-success btn-file") Browse… 
-                          input(type="file" id="imgInp")
+                          input(type="file" id="imgInp" accept="image/*")
                     input(type="text" class="form-control" readonly)
                 
             div(class="form-row")
                 div(class="form-group col-md-6")
                     label SKU
-                    input(type="text" class="form-control" id="sku" v-model="sku" placeholder="SKU")
+                    input(type="text" class="form-control" id="sku" required v-model="sku" placeholder="SKU")
 
                 div(class="form-group col-md-6")
                     label Name
-                    input(type="password" class="form-control" id="name" placeholder="Product Name")
+                    input(type="text" class="form-control" id="name" required v-model="name"  placeholder="Product Name")
             div(class="form-row")
                 div(class="form-group col-md-12")
                     label Description
-                    textarea(type="text" class="form-control" id="description" v-model="description" placeholder="Product Description")
+                    textarea(type="text" class="form-control" required id="description" v-model="description" placeholder="Product Description")
             
             div(class="form-row")
               div(class="form-group col-md-6")
                 label Quantity
-                input(type="number" class="form-control" id="quantity" v-model="quantity" placeholder="")
+                input(type="number" class="form-control" required id="quantity" v-model="quantity" placeholder="")
               
               div(class="form-group col-md-6")
                 label Price
-                input(type="number" class="form-control" id="price" v-model="price" placeholder="")  
+                input(type="number" class="form-control"  required id="price" v-model="price" placeholder="")  
 
             div(class="form-row")
               div(class="form-group col-md-2")
                 button(type="submit" class="btn btn-primary") Save
                 span &nbsp
-                button(type="submit" class="btn btn-light") Reset
+                button(type="reset" class="btn btn-light" @click="resetForm") Reset
     <br/>
     div(class="row")
       div(class="col-md-12 card" style="padding-right: 0px !important; padding-left: 0px !important")

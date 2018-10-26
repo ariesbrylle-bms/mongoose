@@ -1,6 +1,18 @@
 const Product = require('../models/product.model');
+var Cookies = require('cookies')
+var keys = ['atomic shop']
 
 exports.addProduct = function (req, res) {
+  var cookies = new Cookies(req, res, { keys: keys })
+  var userId = cookies.get('userId', { signed: true })
+        
+  if (!userId){
+    userId = user._id;
+    cookies.set('userId', userId, { signed: true })
+  }else{
+    userId = cookies.get('userId', { signed: true })
+  }
+
   let product = new Product(
       {
         sku: req.body.sku,
@@ -9,16 +21,24 @@ exports.addProduct = function (req, res) {
         photo_path: req.body.photo_path,
         quantity: req.body.quantity,
         price: req.body.price,
-        addedBy : req.body.addedBy,
+        addedBy : userId,
         dateAdded : new Date()
       }
   );
 
   product.save(function (err, prod) {
       if (err) {
-          return console.log(err);
+        console.log(err);
+        return res.json({
+          message : "There is something wrong with your form, please check and try again",
+          status : "Error"
+        });
       }
-      res.send(prod);
+      
+      return res.json({
+        message : "Product has been successfully added.",
+        status : "Success"
+      });
   })
 };
 

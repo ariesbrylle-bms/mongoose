@@ -1,5 +1,5 @@
+var PORT = 3400;
 (function(){
-  var PORT = 3400;
   var signUpController = new Vue({ // eslint-disable-line
       el: '#signUpController',
       data: {
@@ -13,40 +13,6 @@
       }
   });
 
-  // login.pug
-  var loginController = new Vue({ // eslint-disable-line
-      el: '#loginController',
-      data: {
-        username : null,
-        password : null
-      },
-      created: function(){
-      },
-      methods: {
-        notification: function(type, message){
-            $.notify(message, type);
-        },
-        onSubmit: function(){
-          var payload = {
-              username: this.username,
-              password: this.password
-          };
-
-          axios.post(`http://localhost:${PORT}/login`, payload)
-              .then((res) => {
-                  if (res.data.status == "Success"){
-                    window.location.href = res.data.url;
-                  }else{
-                    this.notification('error', res.data.message);
-                  }
-              }).catch((err) => {
-                  // this.notification('error', 'Error while saving.');
-                  console.log(err);
-              });
-          
-        }
-      }
-  });
 
   // products controller
   var productController = new Vue({ // eslint-disable-line
@@ -63,36 +29,74 @@
     created: function(){
     },
     methods: {
+      resetForm : function(){
+        this.sku = '';
+        this.name = ''; 
+        this.description = ''; 
+        this.quantity = ''; 
+        this.price = ''; 
+        this.photo_path = ''; 
+        this.productId = ''; 
+        $('#img-upload').attr('src','');
+        $('input').val('')
+      },
       notification: function(type, message){
           $.notify(message, type);
       },
       onSubmit: function(){
-        var payload = {
-          sku : this.sku,
-          name : this.name,
-          description : this.description,
-          quantity : this.quantity,
-          price : this.price,
-          photo_path : this.photo_path,
-          productId : this.productId
-        };
-
-        if (this.productId == ""){
-          axios.post(`http://localhost:${PORT}/products/add`, payload)
-            .then((res) => {
-                if (res.data.status == "Success"){
-                  window.location.href = res.data.url;
-                }else{
-                  this.notification('error', res.data.message);
-                }
-            }).catch((err) => {
-                // this.notification('error', 'Error while saving.');
-                console.log(err);
-            });
-        }else{
-
+        if (typeof $("#imgInp")[0].files[0] == "undefined"){
+          return this.notification('error', 'Please select image only.');
         }
-      }
+        var blobFile = $("#imgInp")[0].files[0];
+        var formData = new FormData();
+        formData.append("file", blobFile);
+
+      
+        $.ajax({
+           url:  `http://localhost:${PORT}/upload_image`,
+           type: "POST",
+           data: formData,
+           processData: false,
+           contentType: false,
+           success: function(response) {
+               if (response.status == "Success"){
+                productController.photo_path = response.path;
+                var payload = {
+                  sku : productController.sku,
+                  name : productController.name,
+                  description : productController.description,
+                  quantity : productController.quantity,
+                  price : productController.price,
+                  photo_path : response.path,
+                  productId : productController.productId
+                };
+
+                if (String(this.productId) == "" || String(this.productId) == String(null) || String(this.productId) == String(undefined)){
+                  axios.post(`http://localhost:${PORT}/products/add`, payload)
+                    .then((res) => {
+                      if (res.data.status == "Success"){
+                        productController.resetForm();
+                        return productController.notification('success', res.data.message);
+                      }else{
+                        productController.notification('error', res.data.message);
+                      }
+                    }).catch((err) => {
+                        productController.notification('error', 'Error while saving.');
+                        console.log(err);
+                    });
+                }else{
+                  
+                }
+               }else{
+                return this.notification('error', 'Please select .png image only.');
+               }               
+           },
+           error: function(jqXHR, textStatus, errorMessage) {
+               console.log(errorMessage); // Optional
+           }
+        });
+    
+      },
     }
   });
   $("#demo").carousel({interval: 3000});
@@ -129,9 +133,13 @@ $(document).ready( function() {
           
           reader.readAsDataURL(input.files[0]);
       }
+
+     // uploadFile(input);
   }
 
   $("#imgInp").change(function(){
       readURL(this);
-  }); 	
+  });
+  
+  
 });

@@ -5,6 +5,10 @@ const path = require('path');
 var http = require('http')
 var Cookies = require('cookies')
 var randtoken = require('rand-token');
+const multer = require("multer");
+var randtoken = require('rand-token');
+const fs = require('fs');
+
 const db = mongoose.connection;
 
 const app = express();
@@ -21,6 +25,11 @@ const index = require('./server/routes/index.routes');
 const login = require('./server/routes/login.routes');
 const admin = require('./server/routes/admin.routes');
 const checkout = require('./server/routes/checkout.routes');
+
+const upload = multer({
+  dest: "./public/uploads"
+  // you might also want to set some limits: https://github.com/expressjs/multer#limits
+});
 
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({extended: false}));
@@ -90,6 +99,39 @@ app.use('/checkout', checkout);
 app.use('/user', user);
 app.use('/products', product);
 app.use('/order', order);
+
+app.post('/upload_image', upload.single("file" /* name attribute of <file> element in your form */),
+  (req, res) => {
+    const tempPath = req.file.path;
+    console.log(req.file);
+    var fileExt = path.extname(req.file.originalname).toLowerCase();
+
+    var fname = randtoken.generate(7);
+    const targetPath = path.join(__dirname, "./public/uploads/"+ fname  + fileExt);
+
+    if (fileExt === ".png" || fileExt === ".jpg" || fileExt === ".jpeg" || fileExt === ".tif" || fileExt === ".gif") {
+      fs.rename(tempPath, targetPath, err => {
+        if (err) return console.log(err);
+
+        res.json({
+          status : 'Success',
+          message : 'File has been uploaded successfully',
+          path : "/uploads/"+ fname + fileExt
+        })
+      });
+    } else {
+      fs.unlink(tempPath, err => {
+        if (err) return handleError(err, res);
+
+        res.json({
+          status : 'Error',
+          message : 'Image File Only',
+          path : ''
+        })
+      });
+    }
+  }
+);
 
 // start server
 app.listen(PORT, () => {
