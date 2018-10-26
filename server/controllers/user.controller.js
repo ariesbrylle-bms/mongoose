@@ -2,6 +2,8 @@ const User = require('../models/user.model');
 const bcrypt = require('bcrypt');
 const saltRounds = 10;
 let password = '';
+var Cookies = require('cookies');
+var keys = ['atomic shop'];
 
 //Simple version, without validation or sanitation
 
@@ -110,5 +112,29 @@ exports.getIndividual = function(req, res){
         }
 
         res.json(user);
+    });
+};
+
+exports.getUserInfo = function(req, res){
+    var cookies = new Cookies(req, res, { keys: keys });
+    var userId = cookies.get('userId', { signed: true });
+
+    if(!userId){
+        //userId = user._id;
+        //cookies.set('userId', userId, { signed: true });
+        return res.json({
+            message: 'Unauthorized Access',
+            status: 'Error1'
+        });
+    } else {
+        userId = cookies.get('userId', { signed: true });
+    }
+
+    User.findOne({ _id: userId }, function(err, user){
+        if(err){
+            return console.log(err);
+        }
+
+        return res.json(user);
     });
 };
