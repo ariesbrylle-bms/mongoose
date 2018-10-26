@@ -64,29 +64,57 @@ exports.updateProduct = function(req,res){
       }
       return res.json({
         message : "Product has been successfully updated.",
-        status : "Success",
-        data : product
+        status : "Success"
       });
   });
 };
 
-exports.deleteProduct = function(req,res){
+exports.updateProductStatus = function(req,res){
   let ProductData = 
   {
-    sku: req.body.sku,
-        status : 'Deactivated',
+        status: 'Active',
         updatedBy : req.body.addedBy,
         dateUpdated : new Date()
   }
 
+  Product.findOneAndUpdate({_id : req.params.id}, {$set: ProductData}, function (err, product) {
+      if (err){
+        return res.json({
+          message : "There is something wrong with your form, please check and try again",
+          status : "Error"
+        });
+      }
+      return res.json({
+        message : "Product has been successfully enabled.",
+        status : "Success"
+      });
+  });
+};
+exports.deleteProduct = function(req,res){
+  let ProductData = 
+  {
+    sku: req.body.sku,
+    status : 'Deactivated',
+    updatedBy : req.body.addedBy,
+    dateUpdated : new Date()
+  }
+
   Product.findOneAndUpdate(req.params.id, {$set: ProductData}, function (err, product) {
-      if (err) return console.log(err);
-      res.send(product);
+      if (err) {
+        return res.json({
+          message : "There is something wrong with your form, please check and try again",
+          status : "Error"
+        });
+      };
+      return res.json({
+        message : "Product has been successfully deactivated.",
+        status : "Success"
+      });
   });
 };
 
 exports.getAll = function(req,res){
-  Product.find({ status : "Active"}).populate({path : 'addedBy'}).exec(function(err,product){
+  Product.find().populate({path : 'addedBy'}).exec(function(err,product){
     if(err){
       res.json(err);
     }

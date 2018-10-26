@@ -1,5 +1,6 @@
 var PORT = 3400;
 (function(){
+  
   var signUpController = new Vue({ // eslint-disable-line
       el: '#signUpController',
       data: {
@@ -30,6 +31,19 @@ var PORT = 3400;
     },
     created: function(){
       this.fOnload()
+    },
+    filters: {
+      toCurrency : function (value) {
+          if (typeof value !== "number") {
+              value = parseFloat(value);
+          }
+          var formatter = new Intl.NumberFormat('en-US', {
+              style: 'currency',
+              currency: 'Php',
+              minimumFractionDigits: 0
+          });
+          return formatter.format(value);
+      }
     },
     methods: {
       fOnload: function(){
@@ -157,6 +171,44 @@ var PORT = 3400;
         });
     
       },
+      deleteProduct(id) {
+        var con = confirm("Are you sure you want to deactivate this product?");
+
+        if (!con){
+          return false;
+        }
+        axios.delete(`http://localhost:${PORT}/products/delete/` + id)
+            .then((res) => {
+                if (res.data.status == "Success"){
+                  this.resetForm();
+                  this.fOnload();
+                  return this.notification('success', res.data.message);
+                }else{
+                  return this.notification('error', res.data.message);
+                }
+            }).catch((err) => {
+                this.notification('error', 'Error while deactivating product. Please contact system administrator');
+            });
+    },
+    enableProduct(id) {
+      var con = confirm("Are you sure you want to enable this product?");
+
+      if (!con){
+        return false;
+      }
+      axios.put(`http://localhost:${PORT}/products/update_status/` + id)
+          .then((res) => {
+              if (res.data.status == "Success"){
+                this.resetForm();
+                this.fOnload();
+                return this.notification('success', res.data.message);
+              }else{
+                return this.notification('error', res.data.message);
+              }
+          }).catch((err) => {
+              this.notification('error', 'Error while deactivating product. Please contact system administrator');
+          });
+  },
       getDetails: function(id){
           axios.get(`http://localhost:${PORT}/products/get/` + id)
               .then((response) => {
@@ -220,6 +272,5 @@ $(document).ready( function() {
   $("#imgInp").change(function(){
       readURL(this);
   });
-  
-  
+
 });

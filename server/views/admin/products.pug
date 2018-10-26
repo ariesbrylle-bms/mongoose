@@ -43,11 +43,11 @@ body
             div(class="form-row")
               div(class="form-group col-md-6")
                 label Quantity
-                input(type="number" class="form-control" required id="quantity" v-model="quantity" placeholder="")
+                input(type="number" min="0" class="form-control" required id="quantity" v-model="quantity" placeholder="")
               
               div(class="form-group col-md-6")
                 label Price
-                input(type="number" class="form-control"  required id="price" v-model="price" placeholder="")  
+                input(type="number" step="any" min="0" class="form-control"  required id="price" v-model="price" placeholder="")  
 
             div(class="form-row")
               div(class="form-group col-md-2")
@@ -60,15 +60,15 @@ body
         div.card-header
           h4 List of Products
         div.card-body
-          table(class="table table-bordered")
+          table#myTable(class="table table-bordered")
             thead
                 tr
                     td(width="10%") Image
                     td(width="7%") SKU
                     td(width="15%") Name
                     td(width="20%") Description
-                    td(width="10%") Quantity
-                    td(width="10%") Price
+                    td(width="8%") Quantity
+                    td(width="12%") Price
                     td(width="13%") Action
             tbody
               tr(v-for="product in products")
@@ -77,13 +77,18 @@ body
                 td {{ product.sku }}
                 td {{ product.name }}
                 td {{ product.description }}
-                td {{ product.quantity }}
-                td {{ product.price }}
+                td {{ product.quantity}}
+                td {{ product.price | toCurrency}}
                 td 
-                  button(type="button" class="btn btn-success" @click="getDetails(product._id)") Edit 
+                  button(type="button" class="btn btn-success btn-sm" @click="getDetails(product._id)") Edit 
                   span &nbsp
-                  button(type="button" class="btn btn-danger" @click="deleteTask(product._id)") Delete
-                =ctr++
+                  <template v-if="product.status == 'Deactivated'">
+                    button(type="button" class="btn btn-warning btn-sm" @click="enableProduct(product._id)") Enable
+                  </template>
+                  <template v-if="product.status == 'Active'">
+                    button(type="button" class="btn btn-danger btn-sm" @click="deleteProduct(product._id)") Deactivate
+                  </template>
+                    
                 
 script(src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js")
 script(src="/js/index.js")
