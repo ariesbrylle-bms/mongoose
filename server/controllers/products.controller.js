@@ -14,11 +14,11 @@ exports.addProduct = function (req, res) {
       }
   );
 
-  product.save(function (err) {
+  product.save(function (err, prod) {
       if (err) {
           return console.log(err);
       }
-      res.send('Product Created successfully')
+      res.send(prod);
   })
 };
 

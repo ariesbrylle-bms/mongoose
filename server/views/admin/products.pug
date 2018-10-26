@@ -6,17 +6,17 @@ head
 body
   include ../includes/topNav.pug   
   main(class="container")    
-    div(class="row")
+    div(class="row" id="productController")
       div(class="col-md-12 card" style="padding-right: 0px !important; padding-left: 0px !important")
         div.card-header
           h4 Add Products
         div.card-body
-          form
+          form(class="center" method="post" id="myForm" v-on:submit.prevent="onSubmit")
+            input(type="hidden" class="form-control" v-model="productId" id="productId")
             div(class="form-row")
-              
               div(class="form-group col-md-6")
                 label Upload Image
-                div(class="card" style="max-width : 300px; min-width : 300px; max-height: 300px")
+                div(class="card" style="max-width : 300px; min-width : 300px; max-height: 300px; min-height:300px")
                   div(class="card-body")
                     img(id='img-upload')
                 <br/>
@@ -28,30 +28,31 @@ body
                 
             div(class="form-row")
                 div(class="form-group col-md-6")
-                    label(for="inputEmail4") SKU
-                    input(type="email" class="form-control" id="txtFirstName" placeholder="First Name")
+                    label SKU
+                    input(type="text" class="form-control" id="sku" v-model="sku" placeholder="SKU")
 
                 div(class="form-group col-md-6")
-                    label(for="inputPassword4") Name
-                    input(type="password" class="form-control" id="txtMiddleName" placeholder="Middle Name")
+                    label Name
+                    input(type="password" class="form-control" id="name" placeholder="Product Name")
             div(class="form-row")
                 div(class="form-group col-md-12")
-                    label(for="inputAddress") Description
-                    textarea(type="text" class="form-control" id="txtEmail" placeholder="juandelacruz@yahoo.com")
+                    label Description
+                    textarea(type="text" class="form-control" id="description" v-model="description" placeholder="Product Description")
+            
             div(class="form-row")
               div(class="form-group col-md-6")
-                label(for="inputAddress") Quantity
-                input(type="text" class="form-control" id="txtFirstAddress" placeholder="House No. / Floor No. / St. Name")
+                label Quantity
+                input(type="number" class="form-control" id="quantity" v-model="quantity" placeholder="")
               
               div(class="form-group col-md-6")
-                label(for="inputAddress2") Price
-                input(type="text" class="form-control" id="txtSecAddress" placeholder="Barangay")  
+                label Price
+                input(type="number" class="form-control" id="price" v-model="price" placeholder="")  
 
             div(class="form-row")
               div(class="form-group col-md-2")
-                button#btnSignIn(type="submit" class="btn btn-primary") Save
+                button(type="submit" class="btn btn-primary") Save
                 span &nbsp
-                button#btnSignIn(type="submit" class="btn btn-light") Reset
+                button(type="submit" class="btn btn-light") Reset
     <br/>
     div(class="row")
       div(class="col-md-12 card" style="padding-right: 0px !important; padding-left: 0px !important")

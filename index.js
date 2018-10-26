@@ -20,6 +20,7 @@ const order = require('./server/routes/order.routes');
 const index = require('./server/routes/index.routes');
 const login = require('./server/routes/login.routes');
 const admin = require('./server/routes/admin.routes');
+const checkout = require('./server/routes/checkout.routes');
 
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({extended: false}));
@@ -85,6 +86,7 @@ app.get('/logout', (req,res)=> {
 app.use('/', index);
 app.use('/login', login);
 app.use('/admin', admin);
+app.use('/checkout', checkout);
 app.use('/user', user);
 app.use('/products', product);
 app.use('/order', order);
