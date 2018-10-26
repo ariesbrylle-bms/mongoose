@@ -99,7 +99,7 @@ exports.deleteProduct = function(req,res){
     dateUpdated : new Date()
   }
 
-  Product.findOneAndUpdate(req.params.id, {$set: ProductData}, function (err, product) {
+  Product.findOneAndUpdate({_id : req.params.id}, {$set: ProductData}, function (err, product) {
       if (err) {
         return res.json({
           message : "There is something wrong with your form, please check and try again",
