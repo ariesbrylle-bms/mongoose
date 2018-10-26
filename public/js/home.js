@@ -24,6 +24,9 @@ var PORT = 3400;
       }
     },
     methods: {
+      notification: function(type, message){
+        $.notify(message, type);
+    },
       fOnload: function(){
           axios.get(`http://localhost:${PORT}/products/getTop`)
               .then((response) => {
@@ -31,7 +34,7 @@ var PORT = 3400;
                   this.topProducts = response.data;
               }).catch((err) => {
                   this.products = [];
-                  this.notification('error', 'Error while requesting for data.');
+                  //this.notification('error', 'Error while requesting for data.');
               });
           
           axios.get(`http://localhost:${PORT}/products/getNew`)
@@ -40,7 +43,7 @@ var PORT = 3400;
               this.newProducts = response.data;
           }).catch((err) => {
               this.products = [];
-              this.notification('error', 'Error while requesting for data.');
+              //this.notification('error', 'Error while requesting for data.');
           });
       },
       addToCart : function(id, price, name, photo, input){
@@ -74,7 +77,7 @@ var PORT = 3400;
               $('#cartBadge').html(ctr);
           }).catch((err) => {
               this.products = [];
-              this.notification('error', 'Error while requesting for data.');
+              //this.notification('error', 'Error while requesting for data.');
           });
       },
       rndStr : function() {

@@ -81,14 +81,18 @@ app.use((req, res, next) => {
 });
 
 app.get('/signup', (req,res)=> {
-  res.render('signup', {title : 'Sign Up'});
+  const model = {
+    title: 'Sign Up',
+    loginCookie : req.viewModel.loginCookie
+};
+  res.render('signup', model);
 });
 
 app.get('/logout', (req,res)=> {
   var cookies = new Cookies(req, res, { keys: keys })
-  cookies.set('LoginToken', '', { signed: true })
-  cookies.set('userType', '', { signed: true })
-  cookies.set('userId', '', { signed: true })
+  cookies.set('LoginToken', null, { signed: true })
+  cookies.set('userType', null, { signed: true })
+  cookies.set('userId', null, { signed: true })
   res.redirect('/');
 });
 

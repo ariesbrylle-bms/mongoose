@@ -1,4 +1,4 @@
-header
+header(id="signUpController")
   nav(class="navbar navbar-expand-md navbar-dark fixed-top bg-dark")
     img(src="/images/header.png" style="max-width: 3%;")
     a(class="navbar-brand" href="/") Atomic Potato Shop
@@ -18,7 +18,7 @@ header
             a(class="nav-link" href="/admin/users") Users
         else 
           span &nbsp
-      form(class="form-inline mt-2 mt-md-0" id="signUpController")
+      form(class="form-inline mt-2 mt-md-0")
         //- input(class="form-control mr-sm-10" type="text" placeholder="Search" aria-label="Search")
         button(type="button" @click="showCart" class="btn btn-danger my-2 my-sm-0")
             i(class="fa fa-cart-arrow-down")
@@ -40,6 +40,7 @@ header
               i(class="fa fa-sign-out") 
               span &nbspLogout
           span &nbsp
+  include ../cart.pug
         
 
             

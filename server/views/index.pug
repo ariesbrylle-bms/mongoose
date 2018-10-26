@@ -3,7 +3,6 @@ html(lang="en")
 
 head
   include includes/header.pug
-  
 body
   include includes/topNav.pug   
   main(class="container")    
@@ -43,10 +42,7 @@ body
                                 button.btn.btn-md(type="button" class="btn btn-dark" style="max-width:140px" v-bind:id="rndStr() + tp._id" @click="addToCart(tp._id, tp.price, tp.name, tp.photo_path ,$event)") 
                                   i(class="fa fa-cart-plus") 
                                   span  Add To Cart
-                              
-            
-  include cart.pug
-
+                            
 script(src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js")
 script(src="/js/home.js")
 script(src="/js/topNav.js")
