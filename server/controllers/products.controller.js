@@ -124,7 +124,7 @@ exports.getAll = function(req,res){
 };
 
 exports.getTopProducts = function(req,res){
-  Product.find().sort({addedBy: 1}).limit(4).exec(function(err,product){
+  Product.find().sort({dateAdded: 1}).limit(4).exec(function(err,product){
     if(err){
       res.json(err);
     }
@@ -134,7 +134,7 @@ exports.getTopProducts = function(req,res){
 };
 
 exports.getNewProducts = function(req,res){
-  Product.find().sort({addedBy: -1}).limit(4).exec(function(err,product){
+  Product.find().sort({dateAdded: -1}).limit(4).exec(function(err,product){
     if(err){
       res.json(err);
     }

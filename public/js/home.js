@@ -6,10 +6,28 @@ var PORT = 3400;
       data: {
       },
       created: function(){
+        this.count();
       },
       methods: {
         showCart: function(){
               $('#cartId').modal('show');
+        },
+        count : function(){
+
+          axios.get(`http://localhost:${PORT}/cart`)
+            .then((response) => {
+                var ctr = 0;
+                if (response.data.length > 0){
+                  for(var i = 0; i < response.data.length ; i++){
+                    ctr += response.data[i].qty;
+                  }
+                }
+                
+                $('#cartBadge').html(ctr);
+            }).catch((err) => {
+                this.products = [];
+                this.notification('error', 'Error while requesting for data.');
+            });
         }
       }
   });
@@ -42,7 +60,6 @@ var PORT = 3400;
               .then((response) => {
                   this.ctr = 0;
                   this.topProducts = response.data;
-                  console.log(response.data)
               }).catch((err) => {
                   this.products = [];
                   this.notification('error', 'Error while requesting for data.');
@@ -52,11 +69,55 @@ var PORT = 3400;
           .then((response) => {
               this.ctr = 0;
               this.newProducts = response.data;
-              console.log(response.data)
           }).catch((err) => {
               this.products = [];
               this.notification('error', 'Error while requesting for data.');
           });
+      },
+      addToCart : function(id, price, name, photo, input){
+        var elemId = '';
+        if (input.target.parentElement.id == ""){
+          elemId = input.target.id;
+        }else{
+          elemId = input.target.parentElement.id;
+        }
+
+        var qty = parseInt($('#'+elemId).prev()[0].value);
+
+        var data = {
+          productId : id,
+          qty : qty,
+          price : price,
+          name : name,
+          photo : photo
+        }
+       
+        axios.post(`http://localhost:${PORT}/cart`, data)
+          .then((response) => {
+              var ctr = 0;
+
+              if (response.data.length > 0){
+                for(var i = 0; i < response.data.length ; i++){
+                  ctr += response.data[i].qty;
+                }
+              }
+              
+              $('#cartBadge').html(ctr);
+          }).catch((err) => {
+              this.products = [];
+              this.notification('error', 'Error while requesting for data.');
+          });
+      },
+      rndStr : function() {
+        var len = 5;
+        let text = ""
+        let chars = "abcdefghijklmnopqrstuvwxyz"
+      
+        for( let i=0; i < len; i++ ) {
+          text += chars.charAt(Math.floor(Math.random() * chars.length))
+        }
+  
+        return text
       }
     }
 });

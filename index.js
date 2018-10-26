@@ -25,6 +25,7 @@ const index = require('./server/routes/index.routes');
 const login = require('./server/routes/login.routes');
 const admin = require('./server/routes/admin.routes');
 const checkout = require('./server/routes/checkout.routes');
+const cart = require('./server/routes/cart.routes');
 
 const upload = multer({
   dest: "./public/uploads"
@@ -95,6 +96,7 @@ app.get('/logout', (req,res)=> {
 app.use('/', index);
 app.use('/login', login);
 app.use('/admin', admin);
+app.use('/cart', cart);
 app.use('/checkout', checkout);
 app.use('/user', user);
 app.use('/products', product);

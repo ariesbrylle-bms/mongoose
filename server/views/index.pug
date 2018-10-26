@@ -13,33 +13,33 @@ body
             h2 TOP PRODUCTS
           div.card-body
             .row()
-                      div(class="col-md-3" v-for="tp in topProducts")
+                      div(class="col-md-3" v-for="tp in topProducts" style="display:flex")
                         div(class="card mb-3 box-shadow")
-                          img(class="card-img-top" v-bind:src="tp.photo_path" style="min-width:235px; min-height : 300px")
+                          img(class="card-img-top" v-bind:src="tp.photo_path" style="min-width:235px; min-height : 300px;max-width:235px; max-height : 300px")
                           div(class="card-body")
                             h6 {{ tp.name }}
                             p(class="card-text" style="color:#007bff") {{ tp.price | toCurrency }}
                             div(class="d-flex justify-content-between align-items-center")
                               div(class="btn-group")
-                                input.form-control(type="number" style="max-width:33%" name="title" min="1"  value="1")
-                                button.btn.btn-md(type="button" class="btn btn-dark" style="max-width:140px") 
+                                input.form-control(type="number" style="max-width:33%" name="item" min="1"  value="1" class="cartQty")
+                                button.btn.btn-md(type="button" class="btn btn-dark" v-bind:id="rndStr() + tp._id" style="max-width:140px" @click="addToCart(tp._id, tp.price, tp.name, tp.photo_path ,$event)") 
                                   i(class="fa fa-cart-plus") 
-                                  span#addCart  Add To Cart
+                                  span Add To Cart
       div(class="col-md-12 card" style="border: 1px solid rgba(0, 0, 0, 0); ")
           div(style="padding-top: 30px !important;padding-left: 25px !important;color:#504c4c") 
             h2 NEW PRODUCTS
           div.card-body
             .row
-                  div(class="col-md-3" v-for="tp in newProducts")
+                  div(class="col-md-3" v-for="tp in newProducts" style="display:flex")
                         div(class="card mb-3 box-shadow")
-                          img(class="card-img-top" v-bind:src="tp.photo_path" style="min-width:235px; min-height : 300px")
+                          img(class="card-img-top" v-bind:src="tp.photo_path" style="min-width:235px; min-height : 300px; max-width:235px; max-height : 300px")
                           div(class="card-body")
                             h6 {{ tp.name }}
                             p(class="card-text" style="color:#007bff") {{ tp.price | toCurrency }}
                             div(class="d-flex justify-content-between align-items-center")
                               div(class="btn-group")
                                 input.form-control(type="number" style="max-width:33%" name="title" min="1"  value="1")
-                                button.btn.btn-md(type="button" class="btn btn-dark" style="max-width:140px") 
+                                button.btn.btn-md(type="button" class="btn btn-dark" style="max-width:140px" @click="addToCart") 
                                   i(class="fa fa-cart-plus") 
                                   span#addCart  Add To Cart
                               
