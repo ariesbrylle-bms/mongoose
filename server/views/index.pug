@@ -7,45 +7,44 @@ body
   include includes/topNav.pug   
   main(class="container")    
     include includes/carousel.pug
-    div(class="col-md-12 card" style="border: 1px solid rgba(0, 0, 0, 0);")
-        div(style="padding-top: 30px !important;-left: 25px !important;color:#504c4c") 
-          h2 TOP PRODUCTS
-        div.card-body
-          .row
-                each s in seasons
-                    div(class="col-md-3")
-                      div(class="card mb-3 box-shadow")
-                        img(class="card-img-top" src="/images/item.jpg")
-                        div(class="card-body")
-                          h6 S7 Edge
-                          p(class="card-text" style="color:#007bff") Php 35,000.00
-                          div(class="d-flex justify-content-between align-items-center")
-                            div(class="btn-group")
-                              button.btn.btn-lg(type="button" v-on:click="addToCart" class="btn btn-dark" style="max-width:150px") 
-                                i(class="fa fa-cart-plus") 
-                                span#addCart  Add To Cart
-                              input.form-control(type="number" style="max-width:33%" name="title" v-model="title" value="1")
-    div(class="col-md-12 card" style="border: 1px solid rgba(0, 0, 0, 0); ")
-        div(style="padding-top: 30px !important;padding-left: 25px !important;color:#504c4c") 
-          h2 NEW PRODUCTS
-        div.card-body
-          .row
-                each s in seasons
-                    div(class="col-md-3")
-                      div(class="card mb-3 box-shadow")
-                        img(class="card-img-top" src="/images/item.jpg")
-                        div(class="card-body")
-                          h6 S7 Edge
-                          p(class="card-text" style="color:#007bff") Php 35,000.00
-                          div(class="d-flex justify-content-between align-items-center")
-                            div(class="btn-group")
-                              input.form-control(type="number" style="max-width:33%" name="title" v-model="title" value="1")
-                              button.btn.btn-md(type="button" v-on:click="addToCart" class="btn btn-dark" style="max-width:140px") 
-                                i(class="fa fa-cart-plus") 
-                                span#addCart  Add To Cart
+    div(id="indexController")
+      div(class="col-md-12 card" style="border: 1px solid rgba(0, 0, 0, 0);")
+          div(style="padding-top: 30px !important;-left: 25px !important;color:#504c4c") 
+            h2 TOP PRODUCTS
+          div.card-body
+            .row()
+                      div(class="col-md-3" v-for="tp in topProducts")
+                        div(class="card mb-3 box-shadow")
+                          img(class="card-img-top" v-bind:src="tp.photo_path" style="min-width:235px; min-height : 300px")
+                          div(class="card-body")
+                            h6 {{ tp.name }}
+                            p(class="card-text" style="color:#007bff") {{ tp.price | toCurrency }}
+                            div(class="d-flex justify-content-between align-items-center")
+                              div(class="btn-group")
+                                input.form-control(type="number" style="max-width:33%" name="title" min="1"  value="1")
+                                button.btn.btn-md(type="button" class="btn btn-dark" style="max-width:140px") 
+                                  i(class="fa fa-cart-plus") 
+                                  span#addCart  Add To Cart
+      div(class="col-md-12 card" style="border: 1px solid rgba(0, 0, 0, 0); ")
+          div(style="padding-top: 30px !important;padding-left: 25px !important;color:#504c4c") 
+            h2 NEW PRODUCTS
+          div.card-body
+            .row
+                  div(class="col-md-3" v-for="tp in newProducts")
+                        div(class="card mb-3 box-shadow")
+                          img(class="card-img-top" v-bind:src="tp.photo_path" style="min-width:235px; min-height : 300px")
+                          div(class="card-body")
+                            h6 {{ tp.name }}
+                            p(class="card-text" style="color:#007bff") {{ tp.price | toCurrency }}
+                            div(class="d-flex justify-content-between align-items-center")
+                              div(class="btn-group")
+                                input.form-control(type="number" style="max-width:33%" name="title" min="1"  value="1")
+                                button.btn.btn-md(type="button" class="btn btn-dark" style="max-width:140px") 
+                                  i(class="fa fa-cart-plus") 
+                                  span#addCart  Add To Cart
                               
             
   include cart.pug
 
 script(src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js")
-script(src="/js/index.js")
+script(src="/js/home.js")

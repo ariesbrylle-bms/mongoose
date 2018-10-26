@@ -123,6 +123,26 @@ exports.getAll = function(req,res){
   });
 };
 
+exports.getTopProducts = function(req,res){
+  Product.find().sort({addedBy: 1}).limit(4).exec(function(err,product){
+    if(err){
+      res.json(err);
+    }
+
+    res.json(product);
+  });
+};
+
+exports.getNewProducts = function(req,res){
+  Product.find().sort({addedBy: -1}).limit(4).exec(function(err,product){
+    if(err){
+      res.json(err);
+    }
+
+    res.json(product);
+  });
+};
+
 /*
 exports.getAll = function(req,res){
   Product.find({ status : "Active"}).populate({path : 'addedBy', select : 'name address' , populate : { path : 'updatedBy'}}).exec(function(err,product){
