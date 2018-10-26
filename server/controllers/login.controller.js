@@ -11,7 +11,8 @@ let password = '';
 exports.getIndex = function(req,res){
   const model = {
       title: 'Login',
-      loginCookie : req.viewModel.loginCookie
+      loginCookie : req.viewModel.loginCookie,
+      userType : req.viewModel.userType
   };
   res.render('login', model);
 };

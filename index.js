@@ -71,9 +71,19 @@ app.use((req, res, next) => {
   // Set the cookie to a value
   cookies.set('LastVisit', new Date().toISOString(), { signed: true })
 
+  var userType = cookies.get('userType', { signed: true })
+      
+        if (!userType){
+          userType = 'Customer';
+          cookies.set('userType', userType, { signed: true })
+        }else{
+          userType = cookies.get('userType', { signed: true })
+        }
+
   req.viewModel = {
     title: 'Online Shopping',
-    loginCookie : loginCookie
+    loginCookie : loginCookie,
+    userType : userType
   };
 
   // console.log(cookies);

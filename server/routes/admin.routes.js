@@ -4,7 +4,8 @@ const router = express.Router();
 router.get('/', function getIndexPage(req, res) {
     const model = {
         title: 'Atomic Shop',
-        loginCookie : req.viewModel.loginCookie
+        loginCookie : req.viewModel.loginCookie,
+        userType : req.viewModel.userType
     };
     res.render('admin/index.pug', model);
 });
@@ -12,7 +13,8 @@ router.get('/', function getIndexPage(req, res) {
 router.get('/products', function getIndexPage(req, res) {
     const model = {
         title: 'Atomic Shop',
-        loginCookie : req.viewModel.loginCookie
+        loginCookie : req.viewModel.loginCookie,
+        userType : req.viewModel.userType
     };
     res.render('admin/products.pug', model);
 });
@@ -20,7 +22,8 @@ router.get('/products', function getIndexPage(req, res) {
 router.get('/orders', function getIndexPage(req, res) {
     const model = {
         title: 'Atomic Shop',
-        loginCookie : req.viewModel.loginCookie
+        loginCookie : req.viewModel.loginCookie,
+        userType : req.viewModel.userType
     };
     res.render('admin/orders.pug', model);
 });
@@ -28,7 +31,8 @@ router.get('/orders', function getIndexPage(req, res) {
 router.get('/users', function getIndexPage(req, res) {
     const model = {
         title: 'Atomic Shop',
-        loginCookie : req.viewModel.loginCookie
+        loginCookie : req.viewModel.loginCookie,
+        userType : req.viewModel.userType
     };
     res.render('admin/users.pug', model);
 });

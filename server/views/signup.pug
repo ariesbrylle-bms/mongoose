@@ -17,33 +17,33 @@ body
             div(class="form-row")
                 div(class="form-group col-md-3")
                     label(for="inputEmail4") First Name
-                    input(type="text" class="form-control" id="fname" v-model="fname" placeholder="First Name")
+                    input(type="text" class="form-control" id="fname" v-model="fname" required="required" placeholder="First Name")
 
                 div(class="form-group col-md-3")
                     label(for="inputPassword4") Middle Name
-                    input(type="text" class="form-control" id="mname" v-model="mname" placeholder="Middle Name")
+                    input(type="text" class="form-control" id="mname" v-model="mname"  placeholder="Middle Name")
 
                 div(class="form-group col-md-3")
                     label(for="inputPassword4") Last Name
-                    input(type="text" class="form-control" id="lname" v-model="lname" placeholder="Last Name")
+                    input(type="text" class="form-control" id="lname" v-model="lname" required="required" placeholder="Last Name")
 
                 div(class="form-group col-md-3")
                     label(for="inputPassword4") Name Extension
-                    input(type="text" class="form-control" id="nameExt" v-model="nameExt" placeholder="Ex: Jr.")
+                    input(type="text" class="form-control" id="nameExt" v-model="nameExt"  placeholder="Ex: Jr.")
 
             div(class="form-row")
                 div(class="form-group col-md-6")
                     label(for="inputAddress") E-mail
-                    input(type="email" class="form-control" id="email" v-model="email" placeholder="juandelacruz@yahoo.com")
+                    input(type="email" class="form-control" id="email" v-model="email" required="required" placeholder="juandelacruz@yahoo.com")
                 
                 div(class="form-group col-md-6")
                     label(for="inputAddress") Phone Number
-                    input(type="text" class="form-control" id="phoneNo" v-model="phoneNo" placeholder="Ex: 555-5555")
+                    input(type="text" class="form-control" id="phoneNo" v-model="phoneNo" required="required" placeholder="Ex: 555-5555")
 
             div(class="form-row")
               div(class="form-group col-md-6")
                 label(for="inputAddress") Address 1
-                input(type="text" class="form-control" id="address1" v-model="address1"  placeholder="House No. / Floor No. / St. Name")
+                input(type="text" class="form-control" id="address1" v-model="address1"  required="required" placeholder="House No. / Floor No. / St. Name")
               
               div(class="form-group col-md-6")
                 label(for="inputAddress2") Address 2
@@ -52,38 +52,37 @@ body
             div(class="form-row")
               div(class="form-group col-md-6")
                   label(for="inputCity") City
-                  input(type="text" class="form-control" id="city" v-model="city" placeholder="City")
+                  input(type="text" class="form-control" id="city" v-model="city" required="required" placeholder="City")
 
               div(class="form-group col-md-4")
                   label(for="inputCity") Province
-                  input(type="text" class="form-control" id="province" v-model="province" placeholder="Province")
+                  input(type="text" class="form-control" id="province" v-model="province" required="required" placeholder="Province")
 
               div(class="form-group col-md-2")
                   label(for="inputZip") Postal Code
-                  input(type="number" class="form-control" id="postalCode" v-model="postalCode" max="9999" placeholder="Postal Code")
+                  input(type="number" class="form-control" id="postalCode" required="required" v-model="postalCode" max="9999" placeholder="Postal Code")
               
             div(class="form-row")
                 div(class="form-group col-md-4")
                   label(for="inputAddress") Username
-                  input(type="text" class="form-control" id="username" v-model="username"  placeholder="Username")
+                  input(type="text" class="form-control" id="username" v-model="username"  required="required" placeholder="Username")
                 
                 div(class="form-group col-md-4")
                   label(for="inputAddress") Password
-                  input(type="password" class="form-control" id="password" v-model="password"  placeholder="Password")
+                  input(type="password" class="form-control" id="password" v-model="password"  required="required" placeholder="Password")
 
                 div(class="form-group col-md-4")
                   label(for="inputAddress") Confirm Password
-                  input(type="password" class="form-control" id="conPassword"  placeholder="Password")
+                  input(type="password" class="form-control" id="conPassword"  required="required" placeholder="Password")
 
             div(class="form-row")
               div(class="form-group col-md-2")
-                button#btnSignIn(type="submit" class="btn btn-primary") Sign Up
+                button(type="submit" class="btn btn-primary") Sign Up
                 span &nbsp
-                button#btnSignIn(type="reset" class="btn btn-light") Reset
+                button(type="reset" class="btn btn-light") Reset
                 
 
 script(src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js")
-script(src="/js/index.js")
 script(src="/js/topNav.js")
 script(src="/js/signup.js")
 
