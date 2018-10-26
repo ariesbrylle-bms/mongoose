@@ -30,7 +30,18 @@
 			"photo": "/uploads/ksYHqPX.png"
 		}
 	],
+<<<<<<< HEAD
 	"YgmsxgxshkACm0fn": [
+=======
+	"qnhpri5LHeY8BzTm": [
+		{
+			"productId": "5bd2a9436bddf62d781773dc",
+			"qty": 4,
+			"price": 799.99,
+			"name": "Halloween Dress for Women",
+			"photo": "/uploads/q04SGyA.jpg"
+		},
+>>>>>>> a870f3d5e09f44602cacd4f81c095976a510ac7d
 		{
 			"productId": "5bd2aa4d6bddf62d781773dd",
 			"qty": 2,
@@ -40,7 +51,11 @@
 		},
 		{
 			"productId": "5bd2aded09b5c736483a2db3",
+<<<<<<< HEAD
 			"qty": 1,
+=======
+			"qty": 4,
+>>>>>>> a870f3d5e09f44602cacd4f81c095976a510ac7d
 			"price": 8095,
 			"name": "Airmax '97",
 			"photo": "/uploads/yL85l32.png"
@@ -51,6 +66,23 @@
 			"price": 2000,
 			"name": "Adidas SST Track Jacket",
 			"photo": "/uploads/PfK5eaA.png"
+<<<<<<< HEAD
+=======
+		},
+		{
+			"productId": "5bd2cae9fc249b1d9ccaa5f8",
+			"qty": 1,
+			"price": 500,
+			"name": "Cookies by the Bucket",
+			"photo": "/uploads/YEFRowF.jpg"
+		},
+		{
+			"productId": "5bd2bab0a147a009404c7af1",
+			"qty": 8,
+			"price": 5000,
+			"name": "WASTED Hoodie",
+			"photo": "/uploads/X1raqxd.png"
+>>>>>>> a870f3d5e09f44602cacd4f81c095976a510ac7d
 		}
 	]
 }
