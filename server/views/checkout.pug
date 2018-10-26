@@ -130,6 +130,94 @@ body
                     span(class="text-muted") Insert Mobile No. Here
 
         div(class="right-box")
+            div(class="col-md-4 order-md-2 mb-4")
+            h4(class="d-flex justify-content-between align-items-center mb-3")
+                span(class="text-muted") Checkout Information
+
+            table(class="table")
+                    thead
+                        tr
+                        td
+                        td(style="width:298px") Item
+                        td(style="width:50px") Quantity
+                        td
+                        td Price
+                        td Total Price
+                    tbody
+                        tr
+                        td 
+                            img(
+                            style="width: 25px;"
+                            src="/images/item.jpg")
+                        td S7 Edge
+                        td 
+                            input(class="form-control" type="number" name="title" v-model="title" value="1")
+                        td x
+                        td Php 500.00
+                        td Php 25,000.00
+                        tr
+                        td 
+                            img(
+                            style="width: 25px;"
+                            src="/images/item.jpg")
+                        td S7 Edge Mahabang Description with color gray and blue and black
+                        td 
+                            input(class="form-control" type="number" name="title" v-model="title" value="1")
+                        td x
+                        td Php 500.00
+                        td Php 25,000.00
+                        tr
+                        td 
+                        td 
+                        td 
+                        td 
+                        td 
+                            b Total Amount
+                        td Php 50,000.00
+
+            div(class="col-md-4 order-md-2 mb-4")
+            h4(class="d-flex justify-content-between align-items-center mb-3")
+                span(class="text") Payment
+
+            div(class="d-block my-3")
+              div(class="custom-control custom-radio")
+                input(id="credit" name="paymentMethod" type="radio" class="custom-control-input" checked required)
+                label(class="custom-control-label" for="credit") Credit card
+
+              div(class="custom-control custom-radio")
+                input(id="debit" name="paymentMethod" type="radio" class="custom-control-input" required)
+                label(class="custom-control-label" for="debit") Cash On Delivery
+
+            div(class="row")
+              div(class="col-md-6 mb-3")
+                label(for="cc-name") Name on card
+                input(type="text" class="form-control" id="cc-name" placeholder="" required)
+                small(class="text-muted") Full name as displayed on card
+                div(class="invalid-feedback")
+                  p Name on card is required
+
+              div(class="col-md-6 mb-3")
+                label(for="cc-number") Credit card number
+                input(type="text" class="form-control" id="cc-number" placeholder="" required)
+                div(class="invalid-feedback")
+                  p Credit card number is required
+
+            div(class="row")
+              div(class="col-md-3 mb-3")
+                label(for="cc-expiration") Expiration
+                input(type="text" class="form-control" id="cc-expiration" placeholder="" required)
+                div(class="invalid-feedback")
+                  p Expiration date required
+
+              div(class="col-md-3 mb-3")
+                label(for="cc-expiration") CVV
+                input(type="text" class="form-control" id="cc-cvv" placeholder="" required)
+                div(class="invalid-feedback")
+                  p Security code required
+
+            hr(class="mb-4")
+            button(class="btn btn-primary btn-lg btn-block" type="submit") Continue to checkout
+
   include cart.pug
 
 script(src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js")
