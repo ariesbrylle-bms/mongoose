@@ -113,6 +113,20 @@ var PORT = 3400;
                 // this.notification('error', 'Error while requesting for data.');
             });
         },
+        checkOut : function(){
+          axios.get(`http://localhost:${PORT}/isLogin`)
+            .then((response) => {
+              if(response.data.status == "error"){
+                $('#cartId').modal('hide');
+                $('#decideCheckout').modal('show');
+              }else{
+
+              }
+            }).catch((err) => {
+                this.products = [];
+                //this.notification('error', 'Error while requesting for data.');
+            });
+        }
       }
   });
 

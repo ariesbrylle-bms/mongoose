@@ -26,6 +26,7 @@ const login = require('./server/routes/login.routes');
 const admin = require('./server/routes/admin.routes');
 const checkout = require('./server/routes/checkout.routes');
 const cart = require('./server/routes/cart.routes');
+const signup = require('./server/routes/signup.routes');
 
 const upload = multer({
   dest: "./public/uploads"
@@ -80,13 +81,29 @@ app.use((req, res, next) => {
   next();
 });
 
-app.get('/signup', (req,res)=> {
-  const model = {
-    title: 'Sign Up',
-    loginCookie : req.viewModel.loginCookie
-};
-  res.render('signup', model);
+app.get('/isLogin', (req,res)=> {
+  var cookies = new Cookies(req, res, { keys: keys })
+  // get unique token
+ 
+  var loginCookie = '';
+  if (!cookies.get('LoginToken', { signed: true })){
+    // do nothing
+  }else{
+    loginCookie = cookies.get('LoginToken', { signed: true })
+  }
+
+  if (loginCookie == ''){
+    return res.json({
+      status : 'error'
+    })
+  }else{
+    return res.json({
+      satus : 'success'
+    })
+  }
 });
+
+
 
 app.get('/logout', (req,res)=> {
   var cookies = new Cookies(req, res, { keys: keys })
@@ -105,6 +122,7 @@ app.use('/checkout', checkout);
 app.use('/user', user);
 app.use('/products', product);
 app.use('/order', order);
+app.use('/signup', signup);
 
 app.post('/upload_image', upload.single("file" /* name attribute of <file> element in your form */),
   (req, res) => {

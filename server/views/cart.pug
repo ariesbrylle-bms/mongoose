@@ -38,4 +38,21 @@ div(class="modal fade" id="cartId" tabindex="-1" role="dialog" aria-hidden="true
 
             div(class="modal-footer")
                 button(type="button" class="btn btn-secondary" data-dismiss="modal") Continue Shopping
-                button(type="button" class="btn btn-primary") Checkout
+                button(type="button" class="btn btn-primary" @click="checkOut") Checkout
+div(class="modal fade" id="decideCheckout" tabindex="-1" role="dialog" aria-hidden="true")
+    div(class="modal-dialog modal-sm" role="document")
+        div(class="modal-content")
+            div(class="modal-header")
+                h5(class="modal-title" id="exampleModalLabel") Checkout
+                button(type="button" class="close" data-dismiss="modal" aria-label="Close")
+                span(aria-hidden="true") &times;
+
+            div(class="modal-body")
+                p Ooops! doesn't have an account yet?
+                  span &nbsp
+                  a(href="/signup?return=/checkout" class="btn btn-secondary btn-sm" ) Sign Up
+                h4 or
+                <br/>
+                p Has already an acccount?
+                  span &nbsp
+                  a(href="/login?return=/checkout" class="btn btn-primary btn-sm" @click="checkOut") Login
