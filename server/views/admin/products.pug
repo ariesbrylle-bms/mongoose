@@ -13,18 +13,19 @@ body
         div.card-body
           form
             div(class="form-row")
+              
               div(class="form-group col-md-6")
                 label Upload Image
+                div(class="card" style="max-width : 300px; min-width : 300px; max-height: 300px")
+                  div(class="card-body")
+                    img(id='img-upload')
+                <br/>
                 div(class="input-group")
                     span(class="input-group-btn")
                         button(class="btn btn-success btn-file") Browse… 
                           input(type="file" id="imgInp")
                     input(type="text" class="form-control" readonly)
-              div(class="form-group col-md-6")
-                label Image
-                div(class="card" style="max-width : 300px; min-width : 300px; max-height: 300px")
-                  div(class="card-body")
-                    img(id='img-upload')
+                
             div(class="form-row")
                 div(class="form-group col-md-6")
                     label(for="inputEmail4") SKU
