@@ -34,7 +34,8 @@ exports.addUser = function (req, res) {
           zipCode: req.body.address.zipCode
         },
         status: req.body.status,
-        addedBy : req.body.addedBy
+        addedBy : req.body.addedBy,
+        dateAdded : new Date()
       }
     );
 

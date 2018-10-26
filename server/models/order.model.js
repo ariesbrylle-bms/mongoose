@@ -8,8 +8,7 @@ let OrderSchema = new Schema({
   transactionNo: {type: String, required: true, max: 25},
   dateOrdered: {
     required: true,
-    type: Date,
-    default: Date.now
+    type: Date
   },
   orderDetails : [{
     productId : {
@@ -46,8 +45,7 @@ let OrderSchema = new Schema({
     },
     dateDelivered : {
       required: false,
-      type: Date,
-      default: Date.now
+      type: Date
     },
     taggedBy : {
       type: mongoose.Schema.Types.ObjectId, 
@@ -56,8 +54,7 @@ let OrderSchema = new Schema({
     },
     dateTagged : {
       required: false,
-      type: Date,
-      default: Date.now
+      type: Date
     }
   },
   billingAddress : {

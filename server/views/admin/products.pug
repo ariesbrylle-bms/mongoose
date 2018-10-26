@@ -5,8 +5,8 @@ head
   include ../includes/header.pug
 body
   include ../includes/topNav.pug   
-  main(class="container")    
-    div(class="row" id="productController")
+  main(class="container" id="productController")    
+    div(class="row")
       div(class="col-md-12 card" style="padding-right: 0px !important; padding-left: 0px !important")
         div.card-header
           h4 Add Products
@@ -60,6 +60,30 @@ body
         div.card-header
           h4 List of Products
         div.card-body
-          p List of products here
+          table(class="table table-bordered")
+            thead
+                tr
+                    td(width="10%") Image
+                    td(width="7%") SKU
+                    td(width="15%") Name
+                    td(width="20%") Description
+                    td(width="10%") Quantity
+                    td(width="10%") Price
+                    td(width="13%") Action
+            tbody
+              tr(v-for="product in products")
+                td
+                  img(v-bind:src="product.photo_path"  , alt="", style="max-width:70px; max-height:70px")
+                td {{ product.sku }}
+                td {{ product.name }}
+                td {{ product.description }}
+                td {{ product.quantity }}
+                td {{ product.price }}
+                td 
+                  button(type="button" class="btn btn-success" @click="getDetails(product._id)") Edit 
+                  span &nbsp
+                  button(type="button" class="btn btn-danger" @click="deleteTask(product._id)") Delete
+                =ctr++
+                
 script(src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js")
 script(src="/js/index.js")

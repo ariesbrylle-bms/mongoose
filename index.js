@@ -103,7 +103,7 @@ app.use('/order', order);
 app.post('/upload_image', upload.single("file" /* name attribute of <file> element in your form */),
   (req, res) => {
     const tempPath = req.file.path;
-    console.log(req.file);
+    //console.log(req.file);
     var fileExt = path.extname(req.file.originalname).toLowerCase();
 
     var fname = randtoken.generate(7);
@@ -121,7 +121,7 @@ app.post('/upload_image', upload.single("file" /* name attribute of <file> eleme
       });
     } else {
       fs.unlink(tempPath, err => {
-        if (err) return handleError(err, res);
+        if (err) return console.log(err);
 
         res.json({
           status : 'Error',
