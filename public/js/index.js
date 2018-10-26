@@ -1,20 +1,6 @@
 var PORT = 3400;
 (function(){
   
-  var signUpController = new Vue({ // eslint-disable-line
-      el: '#signUpController',
-      data: {
-      },
-      created: function(){
-      },
-      methods: {
-        showCart: function(){
-              $('#cartId').modal('show');
-        }
-      }
-  });
-
-
   // products controller
   var productController = new Vue({ // eslint-disable-line
     el: '#productController',
