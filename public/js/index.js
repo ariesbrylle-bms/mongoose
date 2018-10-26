@@ -48,6 +48,6 @@
     }
 });
 
-  $("#demo").carousel({interval: 5000});
+  $("#demo").carousel({interval: 3000});
 
 })();
