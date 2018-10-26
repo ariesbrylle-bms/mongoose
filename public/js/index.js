@@ -35,7 +35,7 @@
         axios.post(`http://localhost:${PORT}/login`, payload)
             .then((res) => {
                 if (res.data.status == "Success"){
-                  window.location.href = '/';
+                  window.location.href = res.data.url;
                 }else{
                   this.notification('error', res.data.message);
                 }

@@ -9,11 +9,11 @@ header
       ul(class="navbar-nav mr-auto")
         if loginCookie != ""
           li(class="nav-item active")
-            a(class="nav-link" href="#") Products
+            a(class="nav-link" href="/admin/products") Products
           li(class="nav-item active")
-            a(class="nav-link" href="#") List of Orders
+            a(class="nav-link" href="/admin/orders") List of Orders
           li(class="nav-item active")
-            a(class="nav-link" href="#") Users
+            a(class="nav-link" href="/admin/users") Users
         else 
           span &nbsp
       form(class="form-inline mt-2 mt-md-0" id="signUpController")

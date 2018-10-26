@@ -64,7 +64,7 @@ app.use((req, res, next) => {
     loginCookie : loginCookie
   };
 
-  console.log(cookies);
+  // console.log(cookies);
 
   next();
 });

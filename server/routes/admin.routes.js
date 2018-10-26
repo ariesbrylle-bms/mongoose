@@ -7,6 +7,30 @@ router.get('/', function getIndexPage(req, res) {
         loginCookie : req.viewModel.loginCookie
     };
     res.render('admin/index.pug', model);
-  });
+});
+
+router.get('/products', function getIndexPage(req, res) {
+    const model = {
+        title: 'Atomic Shop',
+        loginCookie : req.viewModel.loginCookie
+    };
+    res.render('admin/products.pug', model);
+});
+
+router.get('/orders', function getIndexPage(req, res) {
+    const model = {
+        title: 'Atomic Shop',
+        loginCookie : req.viewModel.loginCookie
+    };
+    res.render('admin/orders.pug', model);
+});
+
+router.get('/users', function getIndexPage(req, res) {
+    const model = {
+        title: 'Atomic Shop',
+        loginCookie : req.viewModel.loginCookie
+    };
+    res.render('admin/users.pug', model);
+});
 
 module.exports = router;
