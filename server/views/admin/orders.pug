@@ -6,7 +6,32 @@ head
 body
   include ../includes/topNav.pug   
   main(class="container")    
-    p Welcome orders
+    table(class="table table-bordered")
+      thead
+          tr
+              td(style="width: 30%") Transaction No.
+              td(style="width: 14%") Date Ordered
+              td(style="width: 10%") Amount
+              td(style="width: 10%") Ordered By
+              td(style="width: 15%") Payment Status
+              td(style="width: 21%") Action
+      tbody
+        tr(v-for="note in notes")
+          td 
+          td(v-html="note.description")
+          td
+          td
+          td
+          td 
+            a(href="/logout" class="btn btn-info my-2 my-sm-0")
+                i(class="fa fa-eye") 
+                span &nbspView
+            span &nbsp
+
+            a(href="/logout" class="btn btn-success my-2 my-sm-0")
+                i(class="fa fa-truck") 
+                span &nbspDelivered
+            span &nbsp
 
 script(src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js")
 script(src="/js/index.js")
