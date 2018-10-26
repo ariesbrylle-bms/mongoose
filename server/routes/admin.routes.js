@@ -1,11 +1,11 @@
 const express = require('express');
-const router = express.Router();
+const router = express.Router(); // eslint-disable-line
 
 router.get('/', function getIndexPage(req, res) {
     const model = {
         title: 'Atomic Shop',
-        loginCookie : req.viewModel.loginCookie,
-        userType : req.viewModel.userType
+        loginCookie: req.viewModel.loginCookie,
+        userType: req.viewModel.userType
     };
     res.render('admin/index.pug', model);
 });
@@ -13,8 +13,8 @@ router.get('/', function getIndexPage(req, res) {
 router.get('/products', function getIndexPage(req, res) {
     const model = {
         title: 'Atomic Shop',
-        loginCookie : req.viewModel.loginCookie,
-        userType : req.viewModel.userType
+        loginCookie: req.viewModel.loginCookie,
+        userType: req.viewModel.userType
     };
     res.render('admin/products.pug', model);
 });
@@ -22,8 +22,8 @@ router.get('/products', function getIndexPage(req, res) {
 router.get('/orders', function getIndexPage(req, res) {
     const model = {
         title: 'Atomic Shop',
-        loginCookie : req.viewModel.loginCookie,
-        userType : req.viewModel.userType
+        loginCookie: req.viewModel.loginCookie,
+        userType: req.viewModel.userType
     };
     res.render('admin/orders.pug', model);
 });
@@ -31,8 +31,8 @@ router.get('/orders', function getIndexPage(req, res) {
 router.get('/users', function getIndexPage(req, res) {
     const model = {
         title: 'Atomic Shop',
-        loginCookie : req.viewModel.loginCookie,
-        userType : req.viewModel.userType
+        loginCookie: req.viewModel.loginCookie,
+        userType: req.viewModel.userType
     };
     res.render('admin/users.pug', model);
 });

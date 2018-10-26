@@ -1,0 +1,84 @@
+{
+  "env": {
+      "browser": true,
+      "commonjs": true,
+      "es6": true,
+      "node": true,
+      "mocha": true
+  },
+  "parserOptions": {
+      "ecmaVersion": 8,
+      "sourceType": "module"
+  },
+  "extends": [
+      "eslint:recommended"
+  ],
+  "rules": {
+      "no-bitwise": "error",
+      "camelcase": "error",
+      "curly": "error",
+      "eqeqeq": "error",
+      "guard-for-in": "error",
+      "no-extend-native": "error",
+      "wrap-iife": ["error", "inside"],
+      "indent": ["error", 4,
+          {
+              "SwitchCase": 1
+          }
+      ],
+      "no-use-before-define": ["error", { "functions": false, "classes": true }],
+      "new-cap": ["error", { "capIsNewExceptions": ["Server", "API"] }],
+      "no-caller": "error",
+      "no-new": "error",
+      "no-plusplus": "off",
+      "quotes": ["error", "single"],
+      "no-unused-vars": ["error", { "vars": "local", "args": "none" }],
+      "max-params": ["error", 10],
+      "max-depth": ["error", 5],
+      "max-statements": ["error", 80],
+      "complexity": ["error", 9],
+      "max-len": ["error", { "code": 120, "ignoreComments": true, "ignoreRegExpLiterals": true }],
+      "no-implicit-coercion": "error",
+      "one-var": ["error", "never"],
+      "space-before-function-paren": ["error", "never"],
+      "no-trailing-spaces": "error",
+      "space-in-parens": ["error", "never"],
+      "semi-spacing": ["error", { "before": false, "after": true }],
+      "keyword-spacing": ["error", {
+          "overrides": {
+              "if": { "after": false },
+              "for": { "after": false },
+              "while": { "after": false },
+              "switch": { "after": false },
+              "catch": { "after": false }
+          }
+      }],
+      "key-spacing": ["error", { "beforeColon": false }],
+      "array-bracket-spacing": ["error", "never"],
+      "object-curly-spacing": ["error", "always"],
+      "template-tag-spacing": ["error", "always"],
+      "switch-colon-spacing": ["error", { "before": false, "after": true }],
+      "no-label-var": "error",
+      "init-declarations": ["error", "always"],
+      "semi": "error",
+      "operator-linebreak": ["error", "after"],
+      "comma-style": ["error", "last"],
+      "comma-spacing": ["error", { "before": false, "after": true }],
+      "block-spacing": 2,
+      "consistent-this": ["error", "self"],
+      "no-console": "off",
+      "no-extra-boolean-cast": "off",
+      "no-constant-condition": ["error", { "checkLoops": false }]
+  },
+  "globals": {
+      "$": false,
+      "handleError": false,
+      "describe": false,
+      "it": false,
+      "before": false,
+      "beforeEach": false,
+      "after": false,
+      "afterEach": false,
+      "axios" : false
+  }
+}

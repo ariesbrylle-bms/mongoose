@@ -1,5 +1,5 @@
 const express = require('express');
-const router = express.Router();
+const router = express.Router(); // eslint-disable-line
 
 const orderController = require('../controllers/order.controller');
 
