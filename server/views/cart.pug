@@ -17,28 +17,15 @@ div(class="modal fade" id="cartId" tabindex="-1" role="dialog" aria-hidden="true
                       td Price
                       td Total Price
                   tbody
-                    tr
+                    tr(v-for="cart in cartData")
                       td 
-                        img(
-                          style="width: 25px;"
-                          src="/images/item.jpg")
-                      td S7 Edge
+                        img(v-bind:src="cart.photo"  , alt="", style="max-width:25px; max-height:25px")
+                      td {{ cart.name }}
                       td 
-                        input(class="form-control" type="number" name="title" v-model="title" value="1")
+                        input(class="form-control" type="number" name="title" v-bind:value="cart.qty" @change="addToCart(cart.productId, cart.price, cart.name, cart.photo ,$event)")
                       td x
-                      td Php 500.00
-                      td Php 25,000.00
-                    tr
-                      td 
-                        img(
-                          style="width: 25px;"
-                          src="/images/item.jpg")
-                      td S7 Edge Mahabang Description with color gray and blue and black
-                      td 
-                        input(class="form-control" type="number" name="title" v-model="title" value="1")
-                      td x
-                      td Php 500.00
-                      td Php 25,000.00
+                      td {{cart.price | toCurrency}}
+                      td {{cart.price * cart.qty | toCurrency}}
                     tr
                       td 
                       td 
@@ -46,7 +33,8 @@ div(class="modal fade" id="cartId" tabindex="-1" role="dialog" aria-hidden="true
                       td 
                       td 
                         b Total Amount
-                      td Php 50,000.00
+                      td
+                        span(id="totalAmount")
 
             div(class="modal-footer")
                 button(type="button" class="btn btn-secondary" data-dismiss="modal") Continue Shopping
