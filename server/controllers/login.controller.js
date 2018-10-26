@@ -70,11 +70,17 @@ exports.login = function(req,res){
           }else{
             userType = cookies.get('userType', { signed: true })
           }
+
+          var url = '/';
+
+          if (userType == "Administrator"){
+            url = '/admin';
+          }
          
           return res.json({
             message : "Correct Password and Username.",
             status : "Success",
-            token : LoginToken
+            url : url
           })
         }else{
           return res.json({

@@ -19,6 +19,7 @@ const product = require('./server/routes/product.routes');
 const order = require('./server/routes/order.routes');
 const index = require('./server/routes/index.routes');
 const login = require('./server/routes/login.routes');
+const admin = require('./server/routes/admin.routes');
 
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({extended: false}));
@@ -80,11 +81,10 @@ app.get('/logout', (req,res)=> {
   res.redirect('/');
 });
 
-
-
 // routes
 app.use('/', index);
 app.use('/login', login);
+app.use('/admin', admin);
 app.use('/user', user);
 app.use('/products', product);
 app.use('/order', order);
