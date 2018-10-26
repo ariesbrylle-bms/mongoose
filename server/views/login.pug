@@ -13,19 +13,19 @@ body
             <h1>Login your account</h1>
             p Continue shopping here at Atomic Potato Shop...
           </div>
-          div(class="row")
+          div(class="row" id="loginController")
             div(class="col-md-3")
             div(class="col-md-6")
-              form(class="center")
+              form(class="center" method="post" id="myForm" v-on:submit.prevent="onSubmit")
                 div(class="form-row")
                     div(class="form-group col-md-12")
-                        label(for="inputEmail4") Username
-                        input(type="text" class="form-control" id="txtFirstName" placeholder="Username")
+                        label Username
+                        input(type="text" class="form-control" id="username" v-model="username" required="required" placeholder="Username")
 
                 div(class="form-row")
                     div(class="form-group col-md-12")
-                        label(for="inputAddress") Password
-                        input(type="password" class="form-control" id="txtEmail" placeholder="Password")
+                        label Password
+                        input(type="password" class="form-control" id="password" required="required" v-model="password" placeholder="Password")
 
                 div(class="form-row")
                   div(class="form-group col-md-12")

@@ -6,18 +6,35 @@ header
       span(class="navbar-toggler-icon")
     div(class="collapse navbar-collapse" id="navbarCollapse")
       ul(class="navbar-nav mr-auto")
+        if loginCookie != ""
+          li(class="nav-item active")
+            a(class="nav-link" href="#") Products
+          li(class="nav-item active")
+            a(class="nav-link" href="#") List of Orders
+          li(class="nav-item active")
+            a(class="nav-link" href="#") Users
+        else 
+          span &nbsp
       form(class="form-inline mt-2 mt-md-0" id="signUpController")
         //- input(class="form-control mr-sm-10" type="text" placeholder="Search" aria-label="Search")
-        a(href="/signup" class="btn btn-success my-2 my-sm-0")
-            i(class="fa fa-user-plus") 
-            span &nbspSign Up
-        span &nbsp
-        a(href="/login" class="btn btn-primary my-2 my-sm-0")
-            i(class="fa fa-user-circle-o")
-            span &nbspLogin
-        span &nbsp
         button(type="button" @click="showCart" class="btn btn-danger my-2 my-sm-0")
             i(class="fa fa-cart-arrow-down")
             span &nbspCart
+        span &nbsp
+        if loginCookie == ""
+          a(href="/signup" class="btn btn-success my-2 my-sm-0")
+              i(class="fa fa-user-plus") 
+              span &nbspSign Up
+          span &nbsp
+          a(href="/login" class="btn btn-primary my-2 my-sm-0")
+              i(class="fa fa-user-circle-o")
+              span &nbspLogin
+          span &nbsp
+        else
+          a(href="/logout" class="btn btn-warning my-2 my-sm-0")
+              i(class="fa fa-sign-out") 
+              span &nbspLogout
+          span &nbsp
+        
 
             

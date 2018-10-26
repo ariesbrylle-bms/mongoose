@@ -39,10 +39,11 @@ body
                           p(class="card-text" style="color:#007bff") Php 35,000.00
                           div(class="d-flex justify-content-between align-items-center")
                             div(class="btn-group")
-                              button.btn.btn-lg(type="button" v-on:click="addToCart" class="btn btn-dark" style="max-width:150px") 
+                              input.form-control(type="number" style="max-width:33%" name="title" v-model="title" value="1")
+                              button.btn.btn-md(type="button" v-on:click="addToCart" class="btn btn-dark" style="max-width:140px") 
                                 i(class="fa fa-cart-plus") 
                                 span#addCart  Add To Cart
-                              input.form-control(type="number" style="max-width:33%" name="title" v-model="title" value="1")
+                              
             
   include cart.pug
 
