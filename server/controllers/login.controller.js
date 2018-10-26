@@ -59,8 +59,9 @@ exports.login = function(req, res){
                     userId = cookies.get('userId', { signed: true });
                 }
 
-                var userType = cookies.get('userType', { signed: true });
-
+                var userType = '';
+                console.log(user.userType);
+                console.log(userType);
                 if(!userType){
                     userType = user.userType;
                     cookies.set('userType', userType, { signed: true });
