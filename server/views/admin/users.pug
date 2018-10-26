@@ -2,6 +2,7 @@ doctype html
 html(lang="en")
 
 head
+  link(rel='stylesheet', href='/css/avatar.css')
   include ../includes/header.pug
 body
   include ../includes/topNav.pug   
@@ -11,64 +12,85 @@ body
     div(class="row")
       div(class="col-md-12 card" style="border: 1px solid rgba(0, 0, 0, 0);")
         div.card-body
-          <div class="jumbotron text-center">
-            <h1>Edit Profile</h1>
-            p We will never post on your behalf or share any information without your permission.
-          </div>
-          form
-            div(class="form-row")
-                div(class="form-group col-md-3")
-                    label(for="inputEmail4") First Name
-                    input(type="email" class="form-control" id="txtFirstName" placeholder="First Name")
+          div(class="form-group col-md-6")
+                label Upload Image
+                div(class="card" style="max-width : 300px; min-width : 300px; max-height: 300px")
+                  div(class="card-body")
+                    img(id='img-upload')
+                <br/>
+                div(class="input-group")
+                    span(class="input-group-btn")
+                        button(class="btn btn-success btn-file") Browse… 
+                          input(type="file" id="imgInp")
+                    input(type="text" class="form-control" readonly)
+          div(class="form-row")
+              div(class="form-group col-md-3")
+                  label(for="inputEmail4") First Name
+                  input(type="email" class="form-control" id="txtFirstName" placeholder="First Name")
 
-                div(class="form-group col-md-3")
-                    label(for="inputPassword4") Middle Name
-                    input(type="password" class="form-control" id="txtMiddleName" placeholder="Middle Name")
+              div(class="form-group col-md-3")
+                  label(for="inputPassword4") Middle Name
+                  input(type="password" class="form-control" id="txtMiddleName" placeholder="Middle Name")
 
-                div(class="form-group col-md-3")
-                    label(for="inputPassword4") Last Name
-                    input(type="password" class="form-control" id="txtLastName" placeholder="Last Name")
+              div(class="form-group col-md-3")
+                  label(for="inputPassword4") Last Name
+                  input(type="password" class="form-control" id="txtLastName" placeholder="Last Name")
 
-                div(class="form-group col-md-3")
-                    label(for="inputPassword4") Name Extension
-                    input(type="password" class="form-control" id="txtNameExt" placeholder="Ex: Jr.")
+              div(class="form-group col-md-3")
+                  label(for="inputPassword4") Name Extension
+                  input(type="password" class="form-control" id="txtNameExt" placeholder="Ex: Jr.")
 
-            div(class="form-row")
-                div(class="form-group col-md-6")
-                    label(for="inputAddress") E-mail
-                    input(type="text" class="form-control" id="txtEmail" placeholder="juandelacruz@yahoo.com")
-                
-                div(class="form-group col-md-6")
-                    label(for="inputAddress") Phone Number
-                    input(type="text" class="form-control" id="phoneNumber" placeholder="Ex: 555-5555")
-
-            div(class="form-row")
+          div(class="form-row")
               div(class="form-group col-md-6")
-                label(for="inputAddress") Address 1
-                input(type="text" class="form-control" id="txtFirstAddress" placeholder="House No. / Floor No. / St. Name")
+                  label(for="inputAddress") E-mail
+                  input(type="text" class="form-control" id="txtEmail" placeholder="juandelacruz@yahoo.com")
               
               div(class="form-group col-md-6")
-                label(for="inputAddress2") Address 2
-                input(type="text" class="form-control" id="txtSecAddress" placeholder="Barangay")  
+                  label(for="inputAddress") Phone Number
+                  input(type="text" class="form-control" id="phoneNumber" placeholder="Ex: 555-5555")
 
-            div(class="form-row")
-              div(class="form-group col-md-6")
-                  label(for="inputCity") City
-                  input(type="text" class="form-control" id="txtCity" placeholder="City")
+          div(class="form-row")
+            div(class="form-group col-md-6")
+              label(for="inputAddress") Address 1
+              input(type="text" class="form-control" id="txtFirstAddress" placeholder="House No. / Floor No. / St. Name")
+            
+            div(class="form-group col-md-6")
+              label(for="inputAddress2") Address 2
+              input(type="text" class="form-control" id="txtSecAddress" placeholder="Barangay")  
 
-              div(class="form-group col-md-4")
-                  label(for="inputCity") Province
-                  input(type="text" class="form-control" id="txtProvince" placeholder="Province")
+          div(class="form-row")
+            div(class="form-group col-md-6")
+                label(for="inputCity") City
+                input(type="text" class="form-control" id="txtCity" placeholder="City")
 
-              div(class="form-group col-md-2")
-                  label(for="inputZip") Postal Code
-                  input(type="number" class="form-control" id="txtPostalCode" placeholder="Postal Code")
+            div(class="form-group col-md-4")
+                label(for="inputCity") Province
+                input(type="text" class="form-control" id="txtProvince" placeholder="Province")
 
-            div(class="form-row")
-              div(class="form-group col-md-2")
-                button#btnSignIn(type="submit" class="btn btn-primary") Sign Up
-              div(class="form-group col-md-2")
-                button#btnSignIn(type="submit" class="btn btn-light") Reset
+            div(class="form-group col-md-2")
+                label(for="inputZip") Postal Code
+                input(type="number" class="form-control" id="txtPostalCode" placeholder="Postal Code")
+
+          div(class="form-row")
+            div(class="form-group col-md-2")
+              button#btnSignIn(type="submit" class="btn btn-primary") Sign Up
+            div(class="form-group col-md-2")
+              button#btnSignIn(type="submit" class="btn btn-light") Reset
+    
+    table(class="table table-bordered")
+          thead
+              tr
+                  td(style="width: 60%") Name
+                  td(style="width: 20%") User Type
+                  td(style="width: 20%") Action
+          tbody
+            tr(v-for="note in notes")
+              td 
+              td(v-html="note.description")
+              td 
+                button(type="button" class="btn btn-success" @click="getDetails(note.id)") Edit 
+                span &nbsp
+                button(type="button" class="btn btn-danger" @click="deleteTask(note.id)") Delete
 
 script(src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js")
 script(src="/js/index.js")
