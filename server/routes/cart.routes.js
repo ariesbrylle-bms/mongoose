@@ -79,7 +79,7 @@ router.post('/data', (req, res) => {
     } else {
         var hasFound = false;
         for(var i = 0; i < cart.length; i++){
-            if(parseInt(cart[i].productId) === parseInt(req.body.productId)){
+            if(String(cart[i].productId) === String(req.body.productId)){
                 cart[i].qty =  req.body.qty;
                 hasFound = true;
                 break;
